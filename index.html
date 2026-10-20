@@ -296,4 +296,18 @@ input::placeholder{color:#9a9085}select{padding-right:8px;appearance:auto}
   });
   function escapeHtml(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 })();
-</script></body></html>
+</script><script>
+ document.addEventListener('click', function(e) {
+   var btn = e.target.closest('button');
+   if (btn && btn.textContent.includes('生成出席回执')) {
+     setTimeout(function() {
+       var form = document.getElementById('rsvp-form');
+       var data = new FormData(form);
+       fetch('https://api.web3forms.com/submit', {
+         method: 'POST',
+         body: data
+       });
+     }, 500);
+   }
+ });
+ </script></body></html>
